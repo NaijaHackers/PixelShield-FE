@@ -1,6 +1,3 @@
-Here’s the **complete and actionable README.md** file that combines the product specification and setup instructions into one document. It’s designed to be comprehensive yet easy to follow for anyone who wants to run the project locally:
-
-```markdown
 # Attested Image-Editing Stack
 
 **Version:** MVP  
@@ -9,35 +6,15 @@ Here’s the **complete and actionable README.md** file that combines the produc
 
 ---
 
-## Table of Contents
-1. [Introduction](#introduction)
-   - [Overview](#overview)
-   - [Problem Statement](#problem-statement)
-   - [Key Benefits](#key-benefits)
-2. [Core Features](#core-features)
-3. [Technical Architecture](#technical-architecture)
-4. [Getting Started](#getting-started)
-   - [Prerequisites](#prerequisites)
-   - [Installation](#installation)
-   - [Running the Project](#running-the-project)
-5. [Configuration](#configuration)
-6. [User Flow](#user-flow)
-7. [Competitive Advantage](#competitive-advantage)
-8. [Deployment & Roadmap](#deployment--roadmap)
-9. [Contributing](#contributing)
-10. [License](#license)
+## 1. Introduction
 
----
-
-## Introduction
-
-### Overview
+### 1.1 Overview
 The **Attested Image-Editing Stack** is a Zero-Knowledge (ZK)-powered image provenance solution that tracks and verifies every modification made to an image. It ensures authenticity without exposing sensitive data and helps combat forgeries, deepfakes, and AI-generated forgeries.
 
-### Problem Statement
+### 1.2 Problem Statement
 Manipulated and AI-generated images are eroding trust in digital content. Existing solutions either expose personal metadata or lack cryptographic verification. Our stack provides a privacy-preserving, tamper-proof way to verify image authenticity.
 
-### Key Benefits
+### 1.3 Key Benefits
 - ✅ **Privacy-Preserving** – Uses succinct SP1 ZK proofs to verify authenticity without revealing unnecessary details.  
 - ✅ **Tamper-Proof** – Hashes proofs on Celestia’s blockchain, with metadata stored on IPFS Pinata.  
 - ✅ **Comprehensive AI Detection** – Flags deepfakes, AI-generated images, and all possible image manipulations.  
@@ -45,22 +22,53 @@ Manipulated and AI-generated images are eroding trust in digital content. Existi
 
 ---
 
-## Core Features
-- **Edit Tracking & Cryptographic Proofs**: Tracks every image edit and generates cryptographic proofs.
-- **ZK Verification**: Uses SP1 zkVM for privacy-preserving authenticity verification.
-- **AI-Powered Detection**: Flags deepfakes, AI-generated images, and manipulations.
-- **Tamper-Proof Storage**: Stores metadata on IPFS Pinata and proofs on Celestia.
-- **Seamless Integration**: Available as an npm library and browser extension.
+## 2. Core Features
+
+### 2.1 Edit Tracking & Cryptographic Proofs
+- Every image edit (crop, filter, retouch) generates a cryptographic proof.  
+- Proofs are hashed and stored on Celestia’s blockchain.  
+- System checks if an image already has a proof before reprocessing verification.
+
+### 2.2 ZK Verification for Authenticity
+- Uses succinct SP1 zkVM to verify authenticity without exposing image details.  
+- Generates a hash link to on-chain data, readable in the UI and verifiable on Celestia’s blockchain explorer.
+
+### 2.3 AI-Powered Image Manipulation & Deepfake Detection
+- Uses an AI image detection API provider to analyze images.  
+- Identifies all possible tampering methods, including:  
+  - ✅ AI-generated images.  
+  - ✅ Deepfakes.  
+  - ✅ Edited or manipulated content.  
+- System flags images as:  
+  - ✅ **Verified Authentic** – Original, no major edits.  
+  - ⚠️ **Modified with Proofs** – Edit history available.  
+  - ❌ **AI-Generated/Manipulated** – Possible deepfake detected.
+
+### 2.4 Tamper-Proof Storage (Hybrid On-Chain + Off-Chain)
+- Metadata & Proofs stored on IPFS Pinata.  
+- Hash of the proof stored on Celestia’s blockchain.  
+- Option to retrieve proof history before running another verification.
+
+### 2.5 Authentication & Onboarding via Privy
+- Uses Privy for user authentication.  
+- Allows wallet-based login and social sign-ins.  
+- Supports account-based proof history tracking (optional).
+
+### 2.6 Seamless Developer & User Integration
+- **npm Library** – Developers can integrate the verification stack into apps like Photoshop or Figma.  
+- **Browser Extension** – Enables instant verification of images on the web (e.g., news articles, social media).
 
 ---
 
-## Technical Architecture
-### Components
+## 3. Technical Architecture
+
+### 3.1 High-Level System Design
+**Components:**  
 1. **Frontend (Web Dashboard & Browser Extension)** – User-friendly interface for verification.  
 2. **Backend & ZK (SP1 succinct) Processing** – Runs proof generation and cryptographic tracking.  
 3. **Storage & Blockchain Layer** – Metadata stored on IPFS Pinata, proofs on Celestia.
 
-### Tech Stack
+### 3.2 Tech Stack
 | **Component**                     | **Technology Used**               |
 |-----------------------------------|-----------------------------------|
 | Frontend                          | React (Web UI), Chrome Extension APIs |
@@ -73,83 +81,12 @@ Manipulated and AI-generated images are eroding trust in digital content. Existi
 
 ---
 
-## Getting Started
+## 4. User Flow [MVP Focus: ZK (SP1 succinct) Verification]
 
-### Prerequisites
-Before running the project, ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
-- [Git](https://git-scm.com/)
+### 4.1 High-Level Steps
+1. Upload Image → 2. Check for Existing Proof → 3. Generate ZK Proof → 4. Run AI Tampering Detection → 5. View Verification Status → 6. Share Verified Proof
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/attested-image-editing-stack.git
-   cd attested-image-editing-stack
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. Set up environment variables:
-   - Create a `.env` file in the root directory.
-   - Add the following variables:
-     ```env
-     VITE_PRIVY_APP_ID=your_privy_app_id
-     VITE_CELESTIA_NODE_URL=your_celestia_node_url
-     VITE_IPFS_PINATA_API_KEY=your_ipfs_pinata_api_key
-     VITE_IPFS_PINATA_SECRET_KEY=your_ipfs_pinata_secret_key
-     VITE_AI_DETECTION_API_KEY=your_ai_detection_api_key
-     ```
-
-### Running the Project
-1. Start the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-2. Open your browser and navigate to:
-   ```
-   http://localhost:3000
-   ```
-
----
-
-## Configuration
-### Frontend
-- **Path Aliases**: Configured in `tsconfig.json`:
-  ```json
-  {
-    "compilerOptions": {
-      "baseUrl": "./src",
-      "paths": {
-        "@/*": ["./*"]
-      }
-    }
-  }
-  ```
-
-### Backend
-- **API Endpoints**: Defined in `src/services/api.ts`.
-- **ZK Proof Generation**: Configured in `src/services/zkProofs.ts`.
-
-### Environment Variables
-- **Required Variables**:
-  - `VITE_PRIVY_APP_ID`: Privy authentication app ID.
-  - `VITE_CELESTIA_NODE_URL`: Celestia blockchain node URL.
-  - `VITE_IPFS_PINATA_API_KEY`: IPFS Pinata API key.
-  - `VITE_IPFS_PINATA_SECRET_KEY`: IPFS Pinata secret key.
-  - `VITE_AI_DETECTION_API_KEY`: AI detection API key.
-
----
-
-## User Flow [MVP Focus: ZK (SP1 succinct) Verification]
+### 4.2 Step-by-Step Breakdown
 1. **Upload Image**  
    - Users upload an image via the web dashboard or browser extension.  
    - System checks for file format & size limits.  
@@ -186,19 +123,21 @@ Before running the project, ensure you have the following installed:
 
 ---
 
-## Competitive Advantage
+## 5. Competitive Advantage
+
 | **Feature**                        | **Attested Image-Editing Stack** | **Alternatives**               |
 |------------------------------------|----------------------------------|--------------------------------|
 | Succinct SP1 ZK-Powered Security   | ✅ Yes (privacy-preserving proofs) | ❌ No                          |
 | On-Chain Verification              | ✅ Yes (Celestia Blockchain)     | ⚠️ Limited                    |
 | Tamper-Proof Storage               | ✅ Yes (IPFS + On-Chain)         | ❌ No                          |
-| AI Deepfake & Tampering Detection  | ✅ Yes (via API provider)        | ⚠️ Some Tools                 |
+| AI Deepfake & Tampering Detection  | ✅ Yes (via API provider)        | �️ Some Tools                 |
 | Smart User Onboarding              | ✅ Yes (Privy Authentication)    | ❌ No                          |
 | Duplicate Proof Checking           | ✅ Yes (Pre-check before re-verifying) | ❌ No                          |
 
 ---
 
-## Deployment & Roadmap
+## 6. Deployment & Roadmap
+
 ### ✅ **Phase 1: MVP Release (Everything integrated)**
 - Image verification (SP1 ZK proofs, AI deepfake detection, tampering detection).  
 - Authentication via Privy.  
@@ -209,33 +148,10 @@ Before running the project, ensure you have the following installed:
 
 ---
 
-## Contributing
-We welcome contributions! Here’s how you can help:
-1. Fork the repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add your feature"
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-5. Open a pull request.
+## 7. Open Questions & Future Considerations
+- Should verification be tied to user accounts or fully anonymous?  
+- Should we allow premium features (e.g., priority verification, advanced AI scans)?  
+- Would a marketplace for verified images add value?  
+- How do we optimize proof generation speed for large-scale adoption?  
 
 ---
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-## Support
-For questions or issues, please open an issue on [GitHub](https://github.com/your-username/attested-image-editing-stack/issues).
-
----
-
-```
