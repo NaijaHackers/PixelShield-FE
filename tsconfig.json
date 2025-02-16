@@ -7,9 +7,13 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
+			"@pages/*": ["./src/resources/pages/*"],
+			"@components/*": ["./src/resources/components/*"],
+			"@utils/*": ["sr/common/utils*"],
+			"@common/*": ["./src/common/*"],
+			"@api/*": ["./src/common/api/*"],
+			"@resources/*": ["./src/resources/*"],
 			"@/*": ["./src/*"],
-			"@pages/*": ["./src/pages/*"],
-			"@/components/*": ["./src/components/*"]
 		}
 	}
 }

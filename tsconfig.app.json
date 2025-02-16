@@ -25,9 +25,14 @@
 		/* Path Aliases */
 		"baseUrl": ".", // Base directory for path resolution
 		"paths": {
-			"@/*": ["./src"],
-			"@pages/*": ["./src/pages/*"],
-			"@/components/*": ["./src/components/*"]
+			"@pages/*": ["./src/resources/pages/*"],
+			"@components/*": ["./src/resources/components/*"],
+			"@utils/*": ["sr/common/utils*"],
+			"@common/*": ["./src/common/*"],
+			"@api/*": ["./src/common/api/*"],
+			"@resources/*": ["./src/resources/*"],
+			"@/*": ["./src/*"],
+
 		}
 	},
   "include": ["src"]
