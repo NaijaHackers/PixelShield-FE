@@ -1,6 +1,3 @@
-Here’s the **complete and actionable README.md** file that combines the product specification and setup instructions into one document. It’s designed to be comprehensive yet easy to follow for anyone who wants to run the project locally:
-
-```markdown
 # Attested Image-Editing Stack
 
 **Version:** MVP  
@@ -237,5 +234,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For questions or issues, please open an issue on [GitHub](https://github.com/your-username/attested-image-editing-stack/issues).
 
 ---
-
-```
