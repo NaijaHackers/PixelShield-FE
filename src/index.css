@@ -24,6 +24,8 @@
     --text-xs--line-height: calc(1 / 0.75);
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
+    --text-2xl: 1.5rem;
+    --text-2xl--line-height: calc(2 / 1.5);
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
@@ -357,6 +359,9 @@
   .inline {
     display: inline;
   }
+  .inline-block {
+    display: inline-block;
+  }
   .inline-flex {
     display: inline-flex;
   }
@@ -434,6 +439,9 @@
   }
   .w-max {
     width: max-content;
+  }
+  .max-w-\[341px\] {
+    max-width: 341px;
   }
   .max-w-\[576px\] {
     max-width: 576px;
@@ -669,6 +677,10 @@
   .text-center {
     text-align: center;
   }
+  .text-2xl {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
   .text-sm {
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
@@ -717,6 +729,9 @@
   }
   .text-\(--primary-s\) {
     color: var(--primary-s);
+  }
+  .text-\(--primary-skay\) {
+    color: var(--primary-skay);
   }
   .text-\(--primary-sky\) {
     color: var(--primary-sky);

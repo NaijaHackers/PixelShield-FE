@@ -75,7 +75,17 @@ const UploadPage = () => {
                         }
                     </div>
                     <div className="col-span-1 lg:col-span-2 bg-(--secondary-blue)">
-                        sd
+                        <div className="flex w-full h-full">
+                            {uploadedFiles?.length ? (
+                                <p className="m-auto text-[25px] max-w-[341px] text-center">
+                                    <span className="text-(--primary-sky)">Upload your image</span> to start
+                                    verification
+                                </p>
+                            ) : (
+                                <div>HELLO WOL</div>
+                            )
+                            }
+                        </div>
                     </div>
                 </div>
             </Container>
