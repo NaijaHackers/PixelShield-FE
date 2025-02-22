@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "@common/routes";
 import useUploadStatus from "@/hooks/useUploadStatus";
 import ProofProgress from "@components/ProofProgress";
+import FlagBadge from "@components/FlagBadge";
 
 const UploadPage = () => {
 
@@ -65,10 +66,7 @@ const UploadPage = () => {
                     <img src={createObjectURL(uploadedFiles[0])} className="w-full object-contain max-h-[408px]" />
                 </div>
                 <div className="flex items-center gap-4 backdrop-blur-[110.3px] bg-[#DBEFDC4D]">
-                    <AnimatedButton
-                        label="Report Suspicious Image"
-                        style={{ borderRadius: 12 }}
-                    />
+                    <FlagBadge type="safe" />
                     <p className="text-sx">
                         HELLO WOLRD
                     </p>
