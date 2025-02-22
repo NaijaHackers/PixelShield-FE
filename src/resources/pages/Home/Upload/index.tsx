@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
 import Container from "@components/Container";
 import HomeLayout from "@resources/layouts/Home";
@@ -14,6 +14,7 @@ const UploadPage = () => {
 
     const setUploadedFiles = useStore(state => state.setUploadedFiles)
     const uploadedFiles = useStore(state => state.uploadedFiles)
+    const [showResult, setShowResult] = useState<boolean>(false)
 
     const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[]) => {
         console.log("Accepted files:", acceptedFiles);
@@ -27,8 +28,65 @@ const UploadPage = () => {
         maxFiles: 1
     });
 
-    const createObjectURL = (file: File) => URL.createObjectURL(file)
+    const style = {
+        gap: 10,
+        borderRadius: 12,
+        borderWidth: 1,
+        background: 'transparent',
+        borderColor: 'var(--primary-sky)',
+    };
+
+    const createObjectURL = (file: File) => file ? URL.createObjectURL(file) : undefined
     const { uploadImage, status, messages, isLoading, progress } = useUploadStatus();
+
+    const ImageverificationProgress = (
+        <div className="flex flex-col text-center gap-4">
+            <div className="max-w-[355px]">
+                <ProofProgress progress={70} statusText="Generating ZK Proof" />
+            </div>
+            <div className="">
+                <p className="text-[22.38px]">This would take approximately <span className="text-(--primary-sky)">20minutes</span></p>
+                <p className="text-[22.38px]"> Image Verification complete </p>
+            </div>
+            <AnimatedButton
+                onClick={() => setShowResult(true)}
+                label="View results"
+            />
+        </div>
+    )
+
+    const ImageverificationResult = (
+        <div className="flex flex-col text-center gap-4">
+            <h3 className="text-[20px] w-full text-left">
+                Verification Result
+            </h3>
+            <div className="bg-(--primary-blue) flex flex-col pt-4 rounded-[12px] overflow-hidden w-[602px] max-w-full">
+                <div className="px-4 flex items-center flex-grow justify-center w-full max-h-[408px]">
+                    <img src={createObjectURL(uploadedFiles[0])} className="w-full object-contain max-h-[408px]" />
+                </div>
+                <div className="flex items-center gap-4 backdrop-blur-[110.3px] bg-[#DBEFDC4D]">
+                    <AnimatedButton
+                        label="Report Suspicious Image"
+                        style={{ borderRadius: 12 }}
+                    />
+                    <p className="text-sx">
+                        HELLO WOLRD
+                    </p>
+                </div>
+            </div>
+
+            <div className="flex items-center gap-4 ">
+                <AnimatedButton
+                    label="Report Suspicious Image"
+                    style={{ borderRadius: 12 }}
+                />
+                <AnimatedButton
+                    style={style}
+                    label="Learn More"
+                />
+            </div>
+        </div>
+    )
 
     return (
         <HomeLayout>
@@ -81,6 +139,9 @@ const UploadPage = () => {
                             </div> : null
                         }
                     </div>
+
+                    {/*  */}
+
                     <div className="col-span-1 lg:col-span-2 bg-(--secondary-blue)">
                         <div className="flex w-full h-full text-center justify-center items-center">
                             {!uploadedFiles?.length ? (
@@ -88,13 +149,7 @@ const UploadPage = () => {
                                     <span className="text-(--primary-sky)">Upload your image</span> to start
                                     verification
                                 </p>
-                            ) : (
-                                <div className="flex flex-col text-center">
-                                    <div className="">
-                                        <ProofProgress progress={70} statusText="Generating ZK Proof" />
-                                    </div>
-                                </div>
-                            )
+                            ) : (showResult ? ImageverificationResult : ImageverificationProgress)
                             }
                         </div>
                     </div>

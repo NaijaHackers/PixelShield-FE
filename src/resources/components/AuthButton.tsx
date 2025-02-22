@@ -14,7 +14,6 @@ const AuthButton = () => {
     const style = {
         gap: 10,
         borderRadius: 12,
-        padding: 10,
         borderWidth: 1,
         background: 'transparent',
         width: 189,
