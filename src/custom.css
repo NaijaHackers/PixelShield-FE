@@ -2,6 +2,7 @@
 
 @theme {
     --primary-blue: #0F1B2C;
+    --secondary-blue: #14243B;
     --primary-sky: #2BBBF3;
     --primary-green: #6BBE6E;
     --multi-angle-shadow:  8px 8px 15px rgba(0, 0, 0, 0.3), -8px -8px 15px rgba(0, 0, 0, 0.3), 5px -5px 10px rgba(0, 0, 0, 0.2), -5px 5px 10px rgba(0, 0, 0, 0.2);
