@@ -1,5 +1,6 @@
 import AuthPage from "@pages/Auth";
 import HomePage from "@pages/Home";
+import LandingPage from "@pages/Landing";
 
 export type RoutePath =
     | '/'
@@ -37,7 +38,7 @@ export const ROUTES: Routes = {
     },
     LANDING: {
         PATH: '/',
-        ELEMENT: HomePage,
-        REQUIRES_AUTH: true
+        ELEMENT: LandingPage,
+        REQUIRES_AUTH: false
     }
 }

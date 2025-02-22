@@ -3,7 +3,7 @@ import AnimatedButton from './AnimatedButton';
 
 const AuthButton = () => {
 
-    const { ready, authenticated, login, logout, isModalOpen } = usePrivy();
+    const { ready, authenticated, login, logout, isModalOpen,  } = usePrivy();
 
     return (
         <div className='bg-purple-600 p-5'>

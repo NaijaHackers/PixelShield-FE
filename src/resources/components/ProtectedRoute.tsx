@@ -39,7 +39,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     }
 
     if (requiresAuth && !authenticated) {
-        return <Navigate to={ROUTES['AUTH_PAGE']['PATH']} replace />;
+        return <Navigate to={ROUTES['LANDING']['PATH']} replace />;
     }
 
     return <Element {...rest} />;

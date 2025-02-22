@@ -25,7 +25,7 @@ const AnimatedButton: FC<AnimatedButtonProps> = ({
                     ? "bg-transparent p-0"
                     : `px-4 py-2 ${isLoading || disabled
                     ? "bg-gray-500 cursor-not-allowed text-sm"
-                    : "bg-[#3f3cbb] hover:bg-zinc-700 cursor-pointer"
+                    : "bg-(--primary-sky) hover:bg-zinc-700 cursor-pointer"
                     } text-white`
                 }
                 ${className}`}
