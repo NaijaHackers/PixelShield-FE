@@ -2,8 +2,11 @@ import { usePrivy } from '@privy-io/react-auth';
 import AnimatedButton from './AnimatedButton';
 
 const AuthButton = () => {
+    const { ready, authenticated, login, logout, isModalOpen } = usePrivy();
 
-    const { ready, authenticated, login, logout, isModalOpen, } = usePrivy();
+    // Define button properties dynamically
+    const buttonText = authenticated ? 'Log Out' : 'Log In';
+    const buttonAction = authenticated ? logout : login;
 
     const style = {
         gap: 10,
@@ -12,27 +15,19 @@ const AuthButton = () => {
         borderWidth: 1,
         background: 'transparent',
         width: 189,
-        borderColor:'var(--primary-sky)'
-    }
+        borderColor: 'var(--primary-sky)',
+    };
 
     return (
-        <div className='flex'>
-            {ready && authenticated ? (
-                <AnimatedButton
-                    isLoading={isModalOpen}
-                    onClick={logout}
-                    style={style}
-                    label='Log Out'
-                />
-            ) : (
-                <AnimatedButton
-                    isLoading={isModalOpen}
-                    onClick={login}
-                    style={style}
-                    label='Log In' />
-            )}
+        <div className="flex">
+            <AnimatedButton
+                isLoading={!ready || isModalOpen}
+                onClick={buttonAction}
+                style={style}
+                label={buttonText}
+            />
         </div>
     );
-}
+};
 
 export default AuthButton;

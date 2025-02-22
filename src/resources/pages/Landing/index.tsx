@@ -3,6 +3,8 @@ import LandingHeroAreaCover from '../../../assets/img/landing-hero-area-cover.jp
 import AnimatedButton from "@components/AnimatedButton";
 import { ReactElement } from "react";
 import ShieldIconSVG from "@components/ShieldIconSVG";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@common/routes";
 
 const sponsors: { icon: ReactElement, name: string }[] = [
     {
@@ -28,9 +30,12 @@ const sponsors: { icon: ReactElement, name: string }[] = [
 ]
 
 const LandingPage = () => {
+
+    const navigate = useNavigate()
+
     return (
         <GuestLayout>
-            <div className="w-full h-full flex isolate relative overflow-hidden">
+            <div className="w-full min-h-full flex isolate relative overflow-hidden">
                 <div className="absolute left-[-48px] top-[-286px] h-[600px] aspect-square bg-(--primary-sky) blur-[210.2px] opacity-30 rounded-full"></div>
                 <div className="absolute right-[-48px] bottom-[-286px] h-[600px] aspect-square bg-(--primary-sky) blur-[210.2px] opacity-30 rounded-full"></div>
 
@@ -48,12 +53,15 @@ const LandingPage = () => {
                                 <div className="">
                                     <AnimatedButton
                                         label='Get Started for free'
+                                        onClick={() => {
+                                            navigate(ROUTES['USER_HOMEPAGE']['PATH'])
+                                        }}
                                     // style={{ borderRadius:12 }}
                                     />
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div className="md:col-span-1 col-span-1">
                             <div className="relative flex items-center justify-center p-6">
                                 <div className="relative rounded-xl p-4">
@@ -86,7 +94,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full py-4 bg-[#D2D7DE4D] flex items-center justify-center">
+                    <div className="w-full py-4 bg-[#D2D7DE4D] flex items-center justify-center sticky bottom-0 mt-auto">
                         <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4 w-full md:px-[99px] px-5">
                             {sponsors.map((sponsor, index) => (
                                 <div key={index} className="flex items-center gap-4 justify-center">
