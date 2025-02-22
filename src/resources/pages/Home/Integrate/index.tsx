@@ -1,11 +1,14 @@
+import Container from "@components/Container";
 import HomeLayout from "@resources/layouts/Home";
 
 const IntegratePage = () => {
     return (
         <HomeLayout>
-            <div>
-                IntegratePage
-            </div>
+            <Container>
+                <div>
+                    IntegratePage
+                </div>
+            </Container>
         </HomeLayout>
     );
 }

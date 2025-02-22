@@ -1,11 +1,14 @@
+import Container from "@components/Container";
 import HomeLayout from "@resources/layouts/Home";
 
 const VerificationsPage = () => {
     return (
         <HomeLayout>
-            <div>
-                VerificationsPage
-            </div>
+            <Container>
+                <div>
+                    VerificationsPage
+                </div>
+            </Container>
         </HomeLayout>
     );
 }

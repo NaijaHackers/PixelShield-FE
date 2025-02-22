@@ -15,7 +15,7 @@ const LayoutHeader = () => {
                     <div className="flex">
                         <LogoSVG />
                     </div>
-                    <div className="flex rounded-full bg-[--secondary-blue] w-max px-5 py-3 gap-4">
+                    <div className="flex rounded-full bg-(--secondary-blue) w-max px-5 py-3 gap-4">
                         {[
                             { label: 'Upload', path: ROUTES.UPLOAD_PAGE.PATH },
                             { label: 'My Verifications', path: ROUTES.VERIFICATIONS_PAGE.PATH },
@@ -24,8 +24,8 @@ const LayoutHeader = () => {
                             <Link
                                 key={path}
                                 to={path}
-                                className={`px-4 py-2 rounded-full transition-all ${isActive(path) ? 'bg-blue-600 text-white' : 'text-black'
-                                    } hover:bg-blue-500 hover:text-white`}
+                                className={`px-4 py-2 rounded-full transition-all ${isActive(path) ? 'bg-(--primary-sky) text-white' : ''
+                                    } hover:bg-(--primary-sky) hover:text-white`}
                             >
                                 {label}
                             </Link>

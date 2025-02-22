@@ -5,6 +5,7 @@ import { ReactElement } from "react";
 import ShieldIconSVG from "@components/ShieldIconSVG";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@common/routes";
+import Container from "@components/Container";
 
 const sponsors: { icon: ReactElement, name: string }[] = [
     {
@@ -40,7 +41,7 @@ const LandingPage = () => {
                 <div className="absolute right-[-48px] bottom-[-286px] h-[600px] aspect-square bg-(--primary-sky) blur-[210.2px] opacity-30 rounded-full"></div>
 
                 <div className="my-auto w-full">
-                    <div className="grid md:grid-cols-3 grid-cols-1 md:px-[99px] px-5 mb-5">
+                    <Container className="grid md:grid-cols-3 grid-cols-1 md:px-[99px] px-5 mb-5">
                         <div className="md:col-span-2 col-span-1">
                             <div className="flex flex-col gap-4">
                                 <h1 className="text-[49px] font-[700] max-w-[656px]">
@@ -93,7 +94,8 @@ const LandingPage = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </Container>
+
                     <div className="w-full py-4 bg-[#D2D7DE4D] flex items-center justify-center sticky bottom-0 mt-auto">
                         <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4 w-full md:px-[99px] px-5">
                             {sponsors.map((sponsor, index) => (
