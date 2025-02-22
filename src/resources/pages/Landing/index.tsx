@@ -1,11 +1,39 @@
 import GuestLayout from "@resources/layouts/Guest";
 import LandingHeroAreaCover from '../../../assets/img/landing-hero-area-cover.jpeg'
 import AnimatedButton from "@components/AnimatedButton";
+import { ReactElement } from "react";
+import ShieldIconSVG from "@components/ShieldIconSVG";
+
+const sponsors: { icon: ReactElement, name: string }[] = [
+    {
+        name: 'ZK-Powered Image Verification',
+        icon: <ShieldIconSVG />
+    },
+    {
+        name: 'Tamper-Proof Edit History',
+        icon: <ShieldIconSVG />
+    },
+    {
+        name: 'Blockchain-Backed Security',
+        icon: <ShieldIconSVG />
+    },
+    {
+        name: ' AI-Deepfake Detection',
+        icon: <ShieldIconSVG />
+    },
+    {
+        name: 'Instant Authentication',
+        icon: <ShieldIconSVG />
+    }
+]
 
 const LandingPage = () => {
     return (
         <GuestLayout>
-            <div className="w-full h-full flex">
+            <div className="w-full h-full flex isolate relative overflow-hidden">
+                <div className="absolute left-[-48px] top-[-286px] h-[600px] aspect-square bg-(--primary-sky) blur-[210.2px] opacity-30 rounded-full"></div>
+                <div className="absolute right-[-48px] bottom-[-286px] h-[600px] aspect-square bg-(--primary-sky) blur-[210.2px] opacity-30 rounded-full"></div>
+
                 <div className="my-auto w-full">
                     <div className="grid md:grid-cols-3 grid-cols-1 md:px-[99px] px-5 mb-5">
                         <div className="md:col-span-2 col-span-1">
@@ -20,14 +48,15 @@ const LandingPage = () => {
                                 <div className="">
                                     <AnimatedButton
                                         label='Get Started for free'
-                                        // style={{ borderRadius:12 }}
+                                    // style={{ borderRadius:12 }}
                                     />
                                 </div>
                             </div>
                         </div>
+                        
                         <div className="md:col-span-1 col-span-1">
                             <div className="relative flex items-center justify-center p-6">
-                                <div className="relative shadow-lg rounded-xl p-4">
+                                <div className="relative rounded-xl p-4">
                                     <div className="relative isolate">
                                         <img
                                             src={LandingHeroAreaCover}
@@ -57,9 +86,14 @@ const LandingPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full p-4 bg-[#D2D7DE4D]">
-                        <div className="w-full flex items-center">
-                            Some container
+                    <div className="w-full py-4 bg-[#D2D7DE4D] flex items-center justify-center">
+                        <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4 w-full md:px-[99px] px-5">
+                            {sponsors.map((sponsor, index) => (
+                                <div key={index} className="flex items-center gap-4 justify-center">
+                                    <span className="font-medium line-clamp-1 whitespace-nowrap">{sponsor.name}</span>
+                                    <div className="w-8 h-8 flex items-center justify-center">{sponsor.icon}</div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

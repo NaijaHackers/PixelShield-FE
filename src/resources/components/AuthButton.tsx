@@ -11,7 +11,8 @@ const AuthButton = () => {
         padding: 10,
         borderWidth: 1,
         background: 'transparent',
-        width: 189
+        width: 189,
+        borderColor:'var(--primary-sky)'
     }
 
     return (
