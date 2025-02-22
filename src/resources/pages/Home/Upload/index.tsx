@@ -38,12 +38,15 @@ const UploadPage = () => {
     };
 
     const createObjectURL = (file: File) => file ? URL.createObjectURL(file) : undefined
-    const { uploadImage, status, messages, isLoading, progress } = useUploadStatus();
+    const { uploadImage,
+        // status, messages,
+        isLoading, progress
+    } = useUploadStatus();
 
     const ImageverificationProgress = (
         <div className="flex flex-col text-center gap-4">
             <div className="max-w-[355px]">
-                <ProofProgress progress={70} statusText="Generating ZK Proof" />
+                <ProofProgress progress={progress ?? 23} statusText="Generating ZK Proof" />
             </div>
             <div className="">
                 <p className="text-[22.38px]">This would take approximately <span className="text-(--primary-sky)">20minutes</span></p>
@@ -65,11 +68,14 @@ const UploadPage = () => {
                 <div className="px-4 flex items-center flex-grow justify-center w-full max-h-[408px]">
                     <img src={createObjectURL(uploadedFiles[0])} className="w-full object-contain max-h-[408px]" />
                 </div>
-                <div className="flex items-center gap-4 backdrop-blur-[110.3px] bg-[#DBEFDC4D]">
-                    <FlagBadge type="safe" />
-                    <p className="text-sx">
-                        HELLO WOLRD
-                    </p>
+                <div className="flex items-center gap-4 backdrop-blur-[110.3px] rounded-tl-[inherit] bg-[#DBEFDC4D]">
+                    <FlagBadge type="warning" />
+                    <div className="flex flex-col ml-auto items-end px-4">
+                        <p className="text-xs">
+                            Changes detected in this Image
+                        </p>
+                        <a href="" className="text-[10px] text-(--primary-sky)">Learn More</a>
+                    </div>
                 </div>
             </div>
 
