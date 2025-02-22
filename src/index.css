@@ -390,6 +390,12 @@
   .h-96 {
     height: calc(var(--spacing) * 96);
   }
+  .h-\[81\] {
+    height: 81;
+  }
+  .h-\[81px\] {
+    height: 81px;
+  }
   .h-\[100px\] {
     height: 100px;
   }
@@ -673,6 +679,9 @@
   }
   .text-\[16px\] {
     font-size: 16px;
+  }
+  .text-\[25px\] {
+    font-size: 25px;
   }
   .text-\[49px\] {
     font-size: 49px;
