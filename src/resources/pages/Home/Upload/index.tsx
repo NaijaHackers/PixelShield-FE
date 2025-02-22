@@ -29,14 +29,6 @@ const UploadPage = () => {
         maxFiles: 1
     });
 
-    const style = {
-        gap: 10,
-        borderRadius: 12,
-        borderWidth: 1,
-        background: 'transparent',
-        borderColor: 'var(--primary-sky)',
-    };
-
     const createObjectURL = (file: File) => file ? URL.createObjectURL(file) : undefined
     const { uploadImage,
         // status, messages,
@@ -85,7 +77,13 @@ const UploadPage = () => {
                     style={{ borderRadius: 12 }}
                 />
                 <AnimatedButton
-                    style={style}
+                    style={{
+                        gap: 10,
+                        borderRadius: 12,
+                        borderWidth: 1,
+                        background: 'transparent',
+                        borderColor: 'var(--primary-sky)',
+                    }}
                     label="Learn More"
                 />
             </div>

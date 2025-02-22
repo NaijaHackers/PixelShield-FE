@@ -15,7 +15,7 @@ const LayoutHeader = () => {
                     <div className="flex">
                         <LogoSVG />
                     </div>
-                    <div className="flex rounded-full bg-(--secondary-blue) w-max px-5 py-3 gap-4">
+                    {location.pathname !== ROUTES['LANDING_PAGE']['PATH'] ? <div className="flex rounded-full bg-(--secondary-blue) w-max px-5 py-3 gap-4">
                         {[
                             { label: 'Upload', path: ROUTES.UPLOAD_PAGE.PATH },
                             { label: 'My Verifications', path: ROUTES.VERIFICATIONS_PAGE.PATH },
@@ -30,7 +30,7 @@ const LayoutHeader = () => {
                                 {label}
                             </Link>
                         ))}
-                    </div>
+                    </div> : null}
                     <AuthButton />
                 </div>
             </header>
