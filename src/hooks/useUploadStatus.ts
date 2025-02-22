@@ -1,3 +1,5 @@
+'use strict';
+
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import apiClient from '@common/api';
@@ -13,6 +15,7 @@ export interface UploadResponse {
 const useUploadStatus = () => {
     const [status, setStatus] = useState<UploadStatus | null>(null);
     const [messages, setMessages] = useState<string[]>([]);
+    const [progress, setProgress] = useState<number>(0);
 
     const uploadImage = useMutation({
         mutationFn: async (file: File) => {
@@ -22,6 +25,12 @@ const useUploadStatus = () => {
             const response = await apiClient.post('/upload', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
                 responseType: 'stream', // Stream responses
+                onUploadProgress: (event) => {
+                    if (event.total) {
+                        const percentCompleted = Math.round((event.loaded * 100) / event.total);
+                        setProgress(percentCompleted);
+                    }
+                }
             });
 
             if (!response.data) throw new Error('No response data received');
@@ -38,6 +47,11 @@ const useUploadStatus = () => {
                     const parsedData: UploadResponse = JSON.parse(chunk);
                     setStatus(parsedData.status);
                     setMessages((prev) => [...prev, parsedData.message || '']);
+
+                    // Update progress if provided in the response
+                    if (parsedData.progress !== undefined) {
+                        setProgress(Math.round(parsedData.progress));
+                    }
                 } catch (error) {
                     console.error('Error parsing JSON:', error);
                 }
@@ -49,7 +63,13 @@ const useUploadStatus = () => {
         }
     });
 
-    return { uploadImage: uploadImage.mutate, status, messages, isLoading: uploadImage.isPending };
+    return {
+        uploadImage: uploadImage.mutate,
+        status,
+        messages,
+        progress,
+        isLoading: uploadImage.isPending
+    };
 };
 
 export default useUploadStatus;

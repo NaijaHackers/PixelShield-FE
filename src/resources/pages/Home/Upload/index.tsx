@@ -7,6 +7,8 @@ import AnimatedButton from "@components/AnimatedButton";
 import ChevronLeft from "@components/ChevronLeft";
 import { Link } from "react-router-dom";
 import { ROUTES } from "@common/routes";
+import useUploadStatus from "@/hooks/useUploadStatus";
+import ProofProgress from "@components/ProofProgress";
 
 const UploadPage = () => {
 
@@ -26,6 +28,7 @@ const UploadPage = () => {
     });
 
     const createObjectURL = (file: File) => URL.createObjectURL(file)
+    const { uploadImage, status, messages, isLoading, progress } = useUploadStatus();
 
     return (
         <HomeLayout>
@@ -67,7 +70,11 @@ const UploadPage = () => {
                                     <img src={createObjectURL(uploadedFiles[0])} alt="" />
                                 </div>
                                 <div className="flex flex-grow">
-                                    <AnimatedButton >
+                                    <AnimatedButton
+                                        onClick={() => uploadImage(uploadedFiles[0])}
+                                        isLoading={isLoading}
+                                        loadingLabel={'Uploading...'}
+                                    >
                                         Upload
                                     </AnimatedButton>
                                 </div>
@@ -75,14 +82,18 @@ const UploadPage = () => {
                         }
                     </div>
                     <div className="col-span-1 lg:col-span-2 bg-(--secondary-blue)">
-                        <div className="flex w-full h-full">
-                            {uploadedFiles?.length ? (
-                                <p className="m-auto text-[25px] max-w-[341px] text-center">
+                        <div className="flex w-full h-full text-center justify-center items-center">
+                            {!uploadedFiles?.length ? (
+                                <p className="text-[25px] max-w-[341px]">
                                     <span className="text-(--primary-sky)">Upload your image</span> to start
                                     verification
                                 </p>
                             ) : (
-                                <div>HELLO WOL</div>
+                                <div className="flex flex-col text-center">
+                                    <div className="">
+                                        <ProofProgress progress={70} statusText="Generating ZK Proof" />
+                                    </div>
+                                </div>
                             )
                             }
                         </div>
