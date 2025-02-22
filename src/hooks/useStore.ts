@@ -1,23 +1,22 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 export interface IStore {
-    bears: number;
+    uploadedFiles: File[];
 }
 
 export interface IStoreActions {
-    increasePopulation: () => void;
-    removeAllBears: () => void;
-    updateBears: (newBears: number) => void;
+    addUploadedFiles: (files: File[]) => void;
 }
 
+const ALLOWED_IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
+const ALLOWED_VIDEO_EXTENSIONS = ['mp4', 'mov', 'avi', 'mkv', 'webm'];
+
 const useStore = create<IStore & IStoreActions>((set) => ({
-    bears: 0,
+    uploadedFiles: [],
 
-    increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-
-    removeAllBears: () => set({ bears: 0 }),
-
-    updateBears: (newBears: number) => set({ bears: newBears }),
+    addUploadedFiles: (files: File[]) =>
+        set((state) => ({ uploadedFiles: [...state.uploadedFiles, ...files] }))
 }));
 
+export { ALLOWED_IMAGE_EXTENSIONS, ALLOWED_VIDEO_EXTENSIONS };
 export default useStore;
