@@ -1,7 +1,7 @@
 import { usePrivy } from "@privy-io/react-auth";
 import { redirect } from "react-router-dom";
 export default function AuthHOC({ children }: { children: React.ReactNode }) {
-	const { ready, authenticated, user, login, logout } = usePrivy();
+	const { ready, authenticated, user } = usePrivy();
 
 	if (!ready) {
 		return null;
